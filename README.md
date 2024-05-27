@@ -1,0 +1,1 @@
+# check-local-swift-dependencies

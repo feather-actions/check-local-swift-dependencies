@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-log() { printf -- "** %s\n" "$*" >&2; }
-error() { printf -- "** ERROR: %s\n" "$*" >&2; }
-fatal() { error "$@"; exit 1; }
+log() { printf -- "%s\n" "$*" >&2; }
 
 REPO_ROOT="$(git -C "$PWD" rev-parse --show-toplevel)"
-CURRENT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 read -ra PATHS_TO_CHECK <<< "$( \
   git -C "${REPO_ROOT}" ls-files -z \
@@ -16,7 +13,8 @@ read -ra PATHS_TO_CHECK <<< "$( \
 
 for FILE_PATH in "${PATHS_TO_CHECK[@]}"; do
     if [[ $(grep ".package(path:" "${FILE_PATH}"|wc -l) -ne 0 ]] ; then
-        fatal "❌ The '${FILE_PATH}' file contains local Swift package reference(s)."
+        log "❌ The '${FILE_PATH}' file contains local Swift package reference(s)."
+        exit 1;
     fi
 done 
 

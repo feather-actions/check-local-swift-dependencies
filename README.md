@@ -7,7 +7,7 @@ This GitHub Action checks for local Swift package dependencies in your repositor
 Include the action in your workflow.
 
 ```yaml
-- uses: feather-actions/check-local-swift-dependencies@0.0.2
+- uses: feather-actions/check-local-swift-dependencies@0.0.3
 ```
 Full example:
 
@@ -25,6 +25,6 @@ jobs:
           fetch-depth: 1
   
       - name: Check Local Swift Dependencies
-        uses: feather-actions/check-local-swift-dependencies@0.0.2
+        uses: feather-actions/check-local-swift-dependencies@0.0.3
 ```
 
